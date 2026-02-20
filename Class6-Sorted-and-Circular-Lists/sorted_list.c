@@ -6,18 +6,8 @@ typedef struct node{
     struct node* next;
 }Node;
 
-void push(Node** phead, Node** ptail, int value){
-    Node* new_node;
-    new_node = (Node*)malloc(sizeof(Node));
-    new_node->data = value;
-    new_node->next = NULL;
-    if(*phead == NULL){
-        *phead = new_node;
-        *ptail = new_node;
-    } else {
-        (*ptail)->next = new_node;
-        *ptail = new_node;
-    }
+int is_empty(Node* head) {
+    return head == NULL;
 }
 
 void insert_at_0(Node** phead, Node** ptail, int value){
@@ -31,28 +21,28 @@ void insert_at_0(Node** phead, Node** ptail, int value){
     *phead = new_node;
 }
 
-void insert(Node** phead, Node** tail, int index, int value){
-    if(index == 0){
+void insert(Node** phead, Node** tail, int value){
+    // Handle empty list or insertion at the very beginning
+    if(is_empty(*phead) || value <= (*phead)->data){
         insert_at_0(phead, tail, value);
         return;
     }
+
     Node* ptr = *phead;
 
-    for(int i = 0; i<(index-1); i++){
-        if(ptr == NULL){
-            printf("You cannot add at an index larger than the size of the list.\n");
-            return;
-        }
-        ptr=ptr->next;
+    // Keep moving while next exists and is smaller than value
+    while(ptr->next != NULL && ptr->next->data < value){
+        ptr = ptr->next;
     }
-    if(ptr == NULL){
-        printf("You cannot add at an index larger than the size of the list.\n");
-        return;
-    }
-    Node* new_node = (Node*)malloc(sizeof(Node));
+
+    // Insert after ptr
+    Node* new_node;
+    new_node = (Node*)malloc(sizeof(Node));
     new_node->data = value;
     new_node->next = ptr->next;
     ptr->next = new_node;
+
+    // Update tail if we inserted at the end
     if(new_node->next == NULL){
         *tail = new_node;
     }
@@ -154,16 +144,14 @@ void menu(Node** head, Node**tail){
 
     do {
         printf("\n--- MENU ---\n");
-        printf("1. Push\n");
+        printf("1. Insert\n");
         printf("2. Pop\n");
-        printf("3. Insert at first\n");
-        printf("4. Insert\n");
-        printf("5. Remove first\n");
-        printf("6. Remove\n");
-        printf("7. Print List\n");
-        printf("8. Print first element\n");
-        printf("9. Print last element\n");
-        printf("10. Exit\n");
+        printf("3. Remove first\n");
+        printf("4. Remove\n");
+        printf("5. Print List\n");
+        printf("6. Print first element\n");
+        printf("7. Print last element\n");
+        printf("8. Exit\n");
         printf("Choose: ");
         scanf("%d", &option);
 
@@ -171,48 +159,36 @@ void menu(Node** head, Node**tail){
             case 1:
                 printf("Input the value:\n");
                 scanf("%d", &value);
-                push(head, tail, value);
+                insert(head, tail, value);
                 break;
             case 2:
                 pop(head, tail);
                 printf("Removed!\n");
                 break;
             case 3:
-                printf("Input the value:\n");
-                scanf("%d", &value);
-                insert_at_0(head, tail, value);
-                break;
-            case 4:
-                printf("Input the value:\n");
-                scanf("%d", &value);
-                printf("Input the index:\n");
-                scanf("%d", &index);
-                insert(head, tail, index, value);
-                break;
-            case 5:
                 remove_first(head, tail);
                 break;
-            case 6:
+            case 4:
                 printf("Input the index:\n");
                 scanf("%d", &index);
                 remove_at(head, tail, index);
                 break;
-            case 7:
+            case 5:
                 print_list(head);
                 break;
-            case 8:
+            case 6:
                 print_first(head);
                 break;
-            case 9:
+            case 7:
                 print_last(tail);
                 break;
-            case 10:
+            case 8:
                 printf("Exiting...\n");
                 break;
             default:
                 printf("Invalid option!\n");
         }
-    } while (option != 10);
+    } while (option != 8);
 }
 
 int main(){

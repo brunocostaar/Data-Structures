@@ -35,11 +35,17 @@ This section contains an implementation of a linked list.
 
 *   `linked_list.c`: The source code for the Linked List implementation.
 
+## Class 6: Circular List and Sorted List
+
+This section contains implementations of a circular list and a sorted list.
+
+*   `circular_list.c`: The source code for the Circular List implementation.
+*   `sorted_list.c`: The source code for the Sorted List implementation.
+
 ## Future Implementations
 
 I plan to implement the following data structures:
 
-*   Sorted Linked List
 *   Double Linked List
 *   Stacks
 *   Queues
