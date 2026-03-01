@@ -27,28 +27,40 @@ This section introduces dynamic memory allocation.
 
 This section contains an implementation of a dynamic array (ArrayList).
 
-*   `arraylist.c`: The source code for the ArrayList implementation.
+*   `arraylist.c` / `arraylist.h`: The source code and header for the ArrayList implementation.
 
 ## Class 5: Linked List
 
 This section contains an implementation of a linked list.
 
-*   `linked_list.c`: The source code for the Linked List implementation.
+*   `linked_list.c` / `linked_list.h`: The source code and header for the Linked List implementation.
 
 ## Class 6: Circular List and Sorted List
 
 This section contains implementations of a circular list and a sorted list.
 
-*   `circular_list.c`: The source code for the Circular List implementation.
-*   `sorted_list.c`: The source code for the Sorted List implementation.
+*   `circular-list/`: An implementation of a circular list (`circular_list.c`, `circular_list.h`).
+*   `sorted-list/`: An implementation of a sorted list (`sorted_list.c`, `sorted_list.h`).
+
+## Class 7: Doubly Linked List
+
+This section contains an implementation of a doubly linked list.
+
+*   `dll.c` / `dll.h`: The source code and header for the Doubly Linked List implementation.
+
+## Class 8: Queues
+
+This section contains different implementations of a Queue data structure.
+
+*   `array-based-queue/`: An implementation of a queue using a dynamic array (`abq.c`, `abq.h`).
+*   `linked-list-based-queue/`: An implementation of a queue using a singly linked list (`ll_queue.c`, `llq.h`).
+*   `double-link-list-based-queue/`: An implementation of a queue using a doubly linked list (`dll_queue.c`, `dllq.h`).
 
 ## Future Implementations
 
 I plan to implement the following data structures:
 
-*   Double Linked List
 *   Stacks
-*   Queues
 *   Trees (Binary, AVL, etc.)
 *   Hash Tables
 *   Graphs
