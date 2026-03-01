@@ -1,4 +1,4 @@
-#include "linked_list.h"
+#include "dllq.h"
 
 int main() {
   Node *head = NULL;

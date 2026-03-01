@@ -1,4 +1,4 @@
-#include "linked_list.h"
+#include "circular_list.h"
 
 int main() {
   Node *head = NULL;
