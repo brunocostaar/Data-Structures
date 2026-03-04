@@ -50,10 +50,11 @@ int push_int(IntStack *stack, int value) {
 int pop_int(IntStack *stack) {
   if (stack->i == -1) {
     printf("Empty stack, cannot pop.");
-    return -1;
+    exit(1);
   }
+  int t = stack->vector[stack->i];
   (stack->i)--;
-  return 1;
+  return t;
 }
 
 int destroy_int(IntStack *stack) {
