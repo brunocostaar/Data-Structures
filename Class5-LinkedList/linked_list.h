@@ -149,6 +149,15 @@ void print_first(Node **phead) {
   printf("First: %d\n", ptr->data);
 }
 
+int list_size(Node** phead){
+  Node *head = *phead;
+  int count = 0;
+  for (Node *i = head; i != NULL; i = i->next) {
+    count++;
+  }
+  return count;
+}
+
 void menu(Node **head, Node **tail) {
   int option;
   int value;
@@ -165,7 +174,8 @@ void menu(Node **head, Node **tail) {
     printf("7. Print List\n");
     printf("8. Print first element\n");
     printf("9. Print last element\n");
-    printf("10. Exit\n");
+    printf("10. Size of list.\n");
+    printf("11. Exit\n");
     printf("Choose: ");
     scanf("%d", &option);
 
@@ -209,12 +219,15 @@ void menu(Node **head, Node **tail) {
       print_last(tail);
       break;
     case 10:
+      printf("List size: %d\n", list_size(head));
+      break;
+    case 11:
       printf("Exiting...\n");
       break;
     default:
       printf("Invalid option!\n");
     }
-  } while (option != 10);
+  } while (option != 11);
 }
 
 #endif // LINKED_LIST_H
