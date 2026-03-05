@@ -1,4 +1,4 @@
-#include "../Class9-Stacks/stack.h"
+#include "../Class09-Stacks/stack.h"
 
 void calculator(IntStack* stack, char* string){
     int i = 0; // string index count
