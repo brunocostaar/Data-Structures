@@ -12,8 +12,13 @@ typedef struct node {
 void push(Node **phead, Node **ptail, int value) {
   Node *new_node;
   new_node = (Node *)malloc(sizeof(Node));
+  if(new_node == NULL){
+    printf("no more memory sorry :(");
+    exit(1);
+  }
   new_node->data = value;
   new_node->next = NULL;
+
   if (*phead == NULL) {
     *phead = new_node;
     *ptail = new_node;
@@ -23,15 +28,49 @@ void push(Node **phead, Node **ptail, int value) {
   }
 }
 
+int is_empty(Node** phead){
+  if(*phead == NULL) return 1;
+  return 0;
+}
+
 void insert_at_0(Node **phead, Node **ptail, int value) {
   Node *new_node;
   new_node = (Node *)malloc(sizeof(Node));
+  if(new_node == NULL){
+    printf("no more memory sorry :(");
+    exit(1);
+  }
   new_node->data = value;
   new_node->next = *phead;
   if (*phead == NULL) {
     *ptail = new_node;
   }
   *phead = new_node;
+}
+
+Node* remove_all_n(Node** phead, Node** ptail, int n){
+  Node dummy;
+  dummy.next = *phead;
+
+  Node* prev = &dummy;
+  Node* current = *phead;
+
+  while(current != NULL){
+    if(current->data == n){
+      if(current == *ptail){
+        *ptail = prev;
+      }
+      prev->next = current->next;
+      free(current);
+      current = prev->next;
+    }
+    else{
+      prev = current;
+      current = current->next;
+    }
+  }
+
+  return dummy.next;
 }
 
 void insert(Node **phead, Node **tail, int index, int value) {
@@ -53,11 +92,33 @@ void insert(Node **phead, Node **tail, int index, int value) {
     return;
   }
   Node *new_node = (Node *)malloc(sizeof(Node));
+  if(new_node == NULL){
+    printf("no more memory sorry :(");
+    exit(1);
+  }
   new_node->data = value;
   new_node->next = ptr->next;
   ptr->next = new_node;
   if (new_node->next == NULL) {
     *tail = new_node;
+  }
+}
+
+Node* slice(Node** phead, int n){
+  if(*phead == NULL){
+    return NULL;
+  }
+  if((*phead)->next == NULL){
+    return NULL;
+  }
+  else{
+    for(Node* ptr = *phead; ptr != NULL; ptr = ptr->next){
+      if(ptr->data == n){
+        Node* aux = ptr->next;
+        ptr->next = NULL;
+        return aux; // sliced.
+      }
+    }
   }
 }
 

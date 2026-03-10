@@ -1,9 +1,10 @@
 #include "../Class09-Stacks/stack.h"
+#include <math.h>
 
 void calculator(IntStack* stack, char* string){
     int i = 0; // string index count
     while(string[i] != '\0'){ // while the char on that index is not \0:
-        // this char is a number -> typecast it and push it into the stack
+        // if this char is a number -> typecast it and push it into the stack
         if(string[i] ==  '1' || string[i] ==  '2' || string[i] ==  '3' || string[i] ==  '4' || string[i] ==  '5' || string[i] ==  '6' || 
         string[i] ==  '7' || string[i] ==  '8' || string[i] ==  '9'){
             int num = string[i] - '0';
@@ -47,6 +48,13 @@ void calculator(IntStack* stack, char* string){
                     int result = op1/op2;
                     push_int(stack, result);
                 }
+            }
+        }
+        else if(string[i] == '#'){
+            if(!isEmpty_int(stack)){
+                int op1 = pop_int(stack);
+                int result = (int)sqrt(op1);
+                push_int(stack, result);
             }
         }
         // I was going to implement an else statement for if it wasnt either a number nor an operation but the teacher said
