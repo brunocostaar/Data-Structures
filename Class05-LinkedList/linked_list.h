@@ -119,6 +119,7 @@ Node* slice(Node** phead, int n){
         return aux; // sliced.
       }
     }
+    return NULL;
   }
 }
 
