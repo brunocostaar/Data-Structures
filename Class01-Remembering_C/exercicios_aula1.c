@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
 
 int dentro_retangulo(int x, int y, int x0, int y0, int x1, int y1){
@@ -102,20 +103,29 @@ int negativos(int n, float* vet){
     return count;
 }
 
+
+
 int main(){
     int a = dentro_retangulo(1, 2, 0, 0, 2, 2);
     printf("Esta dentro do retangulo? 1=Sim, 0=Nao - %d\n", a);
+
     int b = primo(1000000007);
     printf("Eh primo? 1=Sim, 0=Nao - %d\n", b);
+
+
     int entrada_fib = 27;
     int c = fibonacci(entrada_fib);
     printf("FIBONACCI NUMERO %d - %d\n", entrada_fib, c);
+
     int entrada_odd_sum = 100;
     int odd_sum = soma_impares(entrada_odd_sum);
     printf("Soma dos %d primeiros numeros impares - %d\n", entrada_odd_sum, odd_sum);
+
     int entrada_pi = 10000;
     double pie = pi(entrada_pi);
     printf("Entrada: %d; Valor de Pi: %.4lf\n", entrada_pi, pie);
+
+
     int f = 2;
     int g = 5;
     int h = 2;
@@ -123,11 +133,15 @@ int main(){
     float x2;
     int nraizes = raizes(f, g, h, &x1, &x2);
     printf("N de raizes: %d\n%dxx + %dx + %d = 0;\nx1 = %f\nx2 = %f\n", nraizes, f, g, h, x1, x2);
+
+
     float area;
     float volume;
     float r = 5;
     calc_esfera(r, &area, &volume);
     printf("Raio: %f - Area da superficie: %f - Volume: %f\n", r, area, volume);
+
+
     int len = 5;
     float array[] = {1, -1, 2, -2, 0};
     int negatives = negativos(len, array);
